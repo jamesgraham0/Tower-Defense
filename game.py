@@ -45,7 +45,7 @@ waves = [
     [0, 4, 5],
     [20, 13, 5],
     [20, 30, 5],
-    [50, 30, 8],
+    [50, 30, 8]
 ]
 
 class Game:
@@ -86,11 +86,12 @@ class Game:
             if len(self.enemys) == 0:
                 self.wave += 1
                 self.randomColor = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-                self.current_wave = waves[self.wave]
                 self.pause = True
                 self.playPauseButton.paused = self.pause
-                if self.wave == 20:
+                if self.wave == 13:
                     self.won = True
+                else:
+                    self.current_wave = waves[self.wave]
         else:
             wave_enemies = [Zombie(), Ghost(), Wizard()]
             for x in range(len(self.current_wave)):
@@ -189,7 +190,10 @@ class Game:
                                                 self.money -= cost
                                     if button_clicked == "Sell":
                                         self.money += self.selected_tower.get_sell_price()
-                                        self.attack_towers.remove(self.selected_tower)
+                                        try:
+                                            self.attack_towers.remove(self.selected_tower)
+                                        except Exception as e:
+                                            print("sold the tower but now everytime tower is clicked you make money until you click somewhere else... hack?")
                                         # bug where you can select multiple towers at same time and sell the one that isn't selected,
                                         # then when you click on that tower it crashes
                                     
