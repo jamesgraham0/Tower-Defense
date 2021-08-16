@@ -1,4 +1,4 @@
-# TowerDefense
+# Tower-Defense
 
 This is a small project that I worked on in July, 2021, with help from python's *Pygame* library.  
 To run the program, run *run.py*.
